@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Cache directory for downloaded APK files -->
+    <cache-path
+        name="apk_cache"
+        path="." />
+
+    <!-- Files directory for temporary APK storage -->
+    <files-path
+        name="apk_files"
+        path="apks" />
+
+    <!-- External cache directory (if available) -->
+    <external-cache-path
+        name="external_apk_cache"
+        path="." />
+</paths>
+

@@ -1,0 +1,52 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "gradle"
+
+      - uses: burrunan/gradle-cache-action@v3
+        name: Build app
+        with:
+          arguments: app:assembleRelease
+          gradle-version: wrapper
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: newshub-apk
+          path: build/outputs/apk/release/app-release.apk
+          retention-days: 30
+
+      - name: Create release info
+        run: |
+          echo "## Build Information" > build-info.txt
+          echo "- **Build Date**: $(date)" >> build-info.txt
+          echo "- **Commit SHA**: ${{ github.sha }}" >> build-info.txt
+          echo "- **Branch**: ${{ github.ref_name }}" >> build-info.txt
+
+      - name: Upload build info
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-info
+          path: build-info.txt
+          retention-days: 30
