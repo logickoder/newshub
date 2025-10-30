@@ -21,8 +21,6 @@ material = "com.google.android.material:material:1.13.0"
 # Activity
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
-# Datastore
-datastore = "androidx.datastore:datastore-preferences:1.1.7"
 # Coil
 coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
@@ -54,10 +52,6 @@ okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.
 # Retrofit
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-serialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
-# Room
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 # Napier
 napier = "io.github.aakira:napier:2.7.1"
 # Navigation

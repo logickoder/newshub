@@ -1,4 +1,4 @@
-package dev.logickoder.newshub.app.data
+package dev.logickoder.newshub.app.domain
 
 import kotlinx.serialization.json.Json
 

@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -8,6 +9,13 @@ plugins {
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
+}
+
+val localProperties = Properties().apply {
+    val localFile = rootProject.file("local.properties")
+    if (localFile.exists()) {
+        localFile.inputStream().use { load(it) }
+    }
 }
 
 android {
@@ -23,9 +31,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-        }
+        buildConfigField(
+            "String",
+            "NEWS_API_KEY",
+            "\"${localProperties.getProperty("NEWS_API_KEY").orEmpty()}\""
+        )
     }
 
     buildTypes {
@@ -90,9 +100,6 @@ dependencies {
     debugImplementation(libs.compose.custom.view)
     debugImplementation(libs.compose.custom.view.pooling)
 
-    // DataStore
-    implementation(libs.datastore)
-
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
@@ -123,11 +130,6 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.serialization)
-
-    // Room
-    ksp(libs.room.compiler)
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
