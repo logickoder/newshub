@@ -20,4 +20,15 @@
     <string name="no_articles_found">No articles found</string>
     <string name="no_articles_found_desc">Try adjusting your search or filters</string>
     <string name="no_image">No image</string>
+    <string name="back">Back</string>
+    <string name="share">Share</string>
+    <string name="article_image">Article image</string>
+    <string name="unknown_date">Unknown date</string>
+    <string name="by_x">By %1$s</string>
+    <string name="share_article">Share Article</string>
+    <string name="custom_tab_error">Cannot open the article link.</string>
+    <string name="failed_to_share_article">Failed to share article.</string>
+    <string name="article_truncated_info">Content has been truncated. Read the full article for complete details.</string>
+    <string name="read_full_article">Read Full Article</string>
+    <string name="article_content">Article Content</string>
 </resources>

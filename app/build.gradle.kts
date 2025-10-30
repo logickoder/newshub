@@ -100,6 +100,9 @@ dependencies {
     debugImplementation(libs.compose.custom.view)
     debugImplementation(libs.compose.custom.view.pooling)
 
+    // CustomTabs
+    implementation(libs.customtabs)
+
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
