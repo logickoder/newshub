@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">NewsHub</string>
+    <string name="search">Search</string>
+    <string name="clear_search">Clear search</string>
+    <string name="search_news">Search news...</string>
+    <string name="article_type">Article Type</string>
+    <string name="headlines">Headlines</string>
+    <string name="everything">Everything</string>
+    <string name="category">Category</string>
+    <string name="date_range">Date Range</string>
+    <string name="sort_by">Sort By</string>
+    <string name="_default">Default</string>
+    <string name="sources">Sources</string>
+    <string name="date_placeholder">YYYY-MM-DD</string>
+    <string name="select_date">Select date</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="no_articles_found">No articles found</string>
+    <string name="no_articles_found_desc">Try adjusting your search or filters</string>
+    <string name="no_image">No image</string>
 </resources>

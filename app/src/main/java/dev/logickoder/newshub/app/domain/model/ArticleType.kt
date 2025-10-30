@@ -1,6 +1,8 @@
 package dev.logickoder.newshub.app.domain.model
 
 import dev.logickoder.newshub.app.domain.serializers.LocalDateSerializer
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
@@ -8,7 +10,7 @@ import java.time.LocalDate
 sealed interface ArticleType {
     @Serializable
     data class Headline(
-        val category: ArticleCategory? = null
+        val category: ArticleCategory = ArticleCategory.General
     ) : ArticleType
 
     @Serializable
@@ -18,5 +20,10 @@ sealed interface ArticleType {
         @Serializable(with = LocalDateSerializer::class)
         val to: LocalDate? = null,
         val sortBy: ArticleSortBy? = null,
+        val domains: ImmutableList<String> = persistentListOf(
+            "bbc.co.uk",
+            "techcrunch.com",
+            "engadget.com"
+        ),
     ) : ArticleType
 }

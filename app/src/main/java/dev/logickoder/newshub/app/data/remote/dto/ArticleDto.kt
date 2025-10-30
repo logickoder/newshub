@@ -6,7 +6,7 @@ import java.time.ZonedDateTime
 
 @Serializable
 data class ArticleDto(
-    val source: SourceDto,
+    val source: SourceDto?,
     val author: String?,
     val title: String,
     val description: String?,

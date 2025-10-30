@@ -11,7 +11,7 @@ object ArticleMapper {
             description = dto.description.orEmpty(),
             imageUrl = dto.urlToImage,
             sourceUrl = dto.url,
-            sourceName = dto.source.name,
+            sourceName = dto.source?.name.orEmpty(),
             publishedAt = dto.publishedAt,
             author = dto.author,
             content = dto.content,

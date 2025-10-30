@@ -12,25 +12,20 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun getArticles(
         type: ArticleType,
-        page: Int,
-        pageSize: Int,
         query: String?
     ) = try {
         val response = when (type) {
             is ArticleType.Headline -> remote.getHeadlines(
-                pageSize = pageSize,
-                page = page,
                 query = query?.takeIf { it.isNotBlank() },
-                category = type.category?.toString()
+                category = type.category.toString()
             )
 
             is ArticleType.Everything -> remote.getEverything(
-                pageSize = pageSize,
-                page = page,
                 query = query?.takeIf { it.isNotBlank() },
                 from = type.from?.toString(),
                 to = type.to?.toString(),
-                sortBy = type.sortBy?.toString()
+                sortBy = type.sortBy?.toString(),
+                domains = type.domains.takeIf { it.isNotEmpty() }?.joinToString(",")
             )
         }
 
