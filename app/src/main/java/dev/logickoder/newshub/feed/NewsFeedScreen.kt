@@ -1,5 +1,6 @@
 package dev.logickoder.newshub.feed
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
@@ -91,6 +92,10 @@ private fun NewsFeedScreenContent(
     val pullToRefreshState = rememberPullToRefreshState()
     val listState = rememberLazyListState()
     val gridState = rememberLazyGridState()
+
+    BackHandler(state.showFilters) {
+        onEvent(NewsFeedEvent.ToggleFilters)
+    }
 
     Scaffold(
         modifier = modifier,
