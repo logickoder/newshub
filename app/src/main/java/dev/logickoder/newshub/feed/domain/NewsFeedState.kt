@@ -11,5 +11,6 @@ data class NewsFeedState(
     val articleType: ArticleType = ArticleType.Headline(),
     val displayStyle: DisplayStyle = DisplayStyle.List,
     val isRefreshing: Boolean = false,
-    val showFilters: Boolean = false
+    val showFilters: Boolean = false,
+    val error: String? = null,
 )

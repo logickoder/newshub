@@ -18,4 +18,5 @@ sealed interface NewsFeedEvent {
     data object ToggleFilters : NewsFeedEvent
     data object Refresh : NewsFeedEvent
     data object LoadArticles : NewsFeedEvent
+    data object ClearError : NewsFeedEvent
 }

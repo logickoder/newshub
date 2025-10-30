@@ -7,8 +7,6 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.logickoder.newshub.app.components.ToastType
-import dev.logickoder.newshub.app.components.globalToastManager
 import dev.logickoder.newshub.app.data.mapper.ErrorMapper
 import dev.logickoder.newshub.app.domain.model.ArticleType
 import dev.logickoder.newshub.app.domain.repository.NewsRepository
@@ -143,6 +141,10 @@ class NewsFeedViewModel @Inject constructor(
                 loadArticles()
             }
 
+            NewsFeedEvent.ClearError -> _state.update {
+                it.copy(error = null)
+            }
+
             NewsFeedEvent.LoadArticles -> loadArticles()
         }
     }
@@ -168,6 +170,7 @@ class NewsFeedViewModel @Inject constructor(
                             isLoading = false,
                             isRefreshing = false,
                             articles = newArticles.toImmutableList(),
+                            error = null,
                         )
                     }
                 },
@@ -175,13 +178,12 @@ class NewsFeedViewModel @Inject constructor(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            isRefreshing = false
+                            isRefreshing = false,
+                            error = ErrorMapper(exception)
                         )
                     }
 
                     Napier.e(exception) { "Failed to fetch articles" }
-
-                    globalToastManager?.show(ErrorMapper(exception), type = ToastType.Error)
                 }
             )
         }

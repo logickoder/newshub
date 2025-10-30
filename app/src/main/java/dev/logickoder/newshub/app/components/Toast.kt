@@ -155,8 +155,3 @@ fun ToastContainer(
 }
 
 val LocalToastManager = staticCompositionLocalOf { ToastManager() }
-
-/**
- * A global reference to the toast manager that can be accessed from anywhere in the app
- */
-var globalToastManager: ToastManager? = null

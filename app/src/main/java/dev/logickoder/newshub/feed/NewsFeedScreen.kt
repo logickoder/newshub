@@ -35,6 +35,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -45,6 +46,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.logickoder.newshub.R
+import dev.logickoder.newshub.app.components.LocalToastManager
+import dev.logickoder.newshub.app.components.ToastType
 import dev.logickoder.newshub.app.domain.model.Article
 import dev.logickoder.newshub.app.theme.AppTheme
 import dev.logickoder.newshub.app.theme.LocalAppColors
@@ -92,9 +95,16 @@ private fun NewsFeedScreenContent(
     val pullToRefreshState = rememberPullToRefreshState()
     val listState = rememberLazyListState()
     val gridState = rememberLazyGridState()
+    val toastManager = LocalToastManager.current
 
     BackHandler(state.showFilters) {
         onEvent(NewsFeedEvent.ToggleFilters)
+    }
+
+    LaunchedEffect(state.error) {
+        if (state.error != null) {
+            toastManager.show(state.error, type = ToastType.Error)
+        }
     }
 
     Scaffold(
