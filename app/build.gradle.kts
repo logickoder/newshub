@@ -91,9 +91,36 @@ tasks.register<JacocoReport>("jacocoTestReport") {
         "**/BuildConfig.*",
         "**/Manifest*.*",
         "**/*Test*.*",
+        "**/*Tests*.*",
         "android/**/*.*",
-        "**/data/remote/dto/*",
-        "**/di/*"
+
+        // Exclude UI/Compose (not unit tested)
+        "**/*Screen*.class",
+        "**/*Activity*.class",
+        "**/components/**",
+
+        // Exclude DTOs (just data classes)
+        "**/remote/dto/**",
+
+        // Exclude DI modules
+        "**/di/**",
+        "**/*Module*.class",
+
+        // Exclude generated code
+        "**/generated/**",
+        "**/*_Factory.class",
+        "**/*_MembersInjector.class",
+
+        // Exclude models (data classes)
+        "**/model/**/*.class",
+
+        // Exclude Hilt generated
+        "**/*_HiltModules*.class",
+        "**/*_Provide*.class",
+        "hilt_aggregated_deps/**",
+
+        // Exclude ComposableSingletons
+        "**/*ComposableSingletons*.class"
     )
 
     val javaTree = fileTree(layout.buildDirectory.dir("intermediates/javac/release/classes")) {

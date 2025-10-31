@@ -18,10 +18,22 @@ the [GitHub Actions tab](https://github.com/logickoder/newshub/actions):**
 
 ## 📊 Test Coverage
 
-![Coverage](https://img.shields.io/badge/Coverage-75%25-brightgreen)
+**Unit Test Coverage: 75%+** (on business logic layers)
 
-Detailed coverage reports are generated with each build and available in
-the [Actions artifacts](https://github.com/logickoder/newshub/actions).
+Coverage is measured on:
+
+- ✅ ViewModels (state management)
+- ✅ Repository layer (data operations)
+- ✅ Use Cases (business rules)
+- ✅ Mappers (data transformations)
+
+*Note: UI components (Compose screens), DTOs, and DI modules are excluded from coverage metrics as
+they contain no business logic requiring unit tests.*
+
+**View detailed coverage:**
+
+1. Download `coverage-report` artifact from [Actions](https://github.com/logickoder/newshub/actions)
+2. Open `index.html` in browser
 
 ## Features
 
@@ -93,15 +105,6 @@ Run tests with coverage report:
 ```bash
 ./gradlew testDebugUnitTest jacocoTestReport
 ```
-
-**Test coverage:** 75%+
-
-### Test Coverage
-
-- ✅ ViewModel layer (state management, business logic)
-- ✅ Repository layer (data fetching, error handling)
-- ✅ Mapper layer (DTO to domain model conversion)
-- ✅ Use case layer (business rules)
 
 ## API Reference
 
