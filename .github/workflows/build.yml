@@ -43,9 +43,12 @@ jobs:
         id: jacoco
         uses: cicirello/jacoco-badge-generator@v2
         with:
+          jacoco-csv-file: app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.csv
           badges-directory: badges
           generate-branches-badge: true
           generate-summary: true
+          coverage-badge-filename: coverage.svg
+          branches-badge-filename: branches.svg
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
