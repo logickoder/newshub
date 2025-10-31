@@ -61,9 +61,12 @@ navigation-runtime = { module = "androidx.navigation3:navigation3-runtime", vers
 navigation-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "navigation" }
 navigation-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "navigation" }
 # Testing
-junit = "junit:junit:4.13.2"
 androidx-test-ext-junit = "androidx.test.ext:junit:1.3.0"
 espresso-core = "androidx.test.espresso:espresso-core:3.7.0"
+junit = "junit:junit:4.13.2"
+mockk = "io.mockk:mockk:1.13.8"
+kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1"
+truth = "com.google.truth:truth:1.4.4"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

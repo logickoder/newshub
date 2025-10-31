@@ -1,8 +1,6 @@
 package dev.logickoder.newshub.app.domain.model
 
 import dev.logickoder.newshub.app.domain.serializers.LocalDateSerializer
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
@@ -20,7 +18,7 @@ sealed interface ArticleType {
         @Serializable(with = LocalDateSerializer::class)
         val to: LocalDate? = null,
         val sortBy: ArticleSortBy? = null,
-        val domains: ImmutableList<String> = persistentListOf(
+        val domains: List<String> = listOf(
             "bbc.co.uk",
             "techcrunch.com",
             "engadget.com"

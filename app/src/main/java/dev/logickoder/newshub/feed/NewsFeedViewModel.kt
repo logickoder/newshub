@@ -53,9 +53,6 @@ class NewsFeedViewModel @Inject constructor(
             .distinctUntilChanged()
             .onEach { loadArticles() }
             .launchIn(viewModelScope)
-
-        // Load initial articles
-        loadArticles()
     }
 
     fun onEvent(event: NewsFeedEvent) {

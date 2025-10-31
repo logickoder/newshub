@@ -69,7 +69,7 @@ fun FilterSection(
     onFromDateChanged: (LocalDate?) -> Unit,
     onToDateChanged: (LocalDate?) -> Unit,
     onSortByChanged: (ArticleSortBy?) -> Unit,
-    onDomainsChanged: (ImmutableList<String>) -> Unit,
+    onDomainsChanged: (List<String>) -> Unit,
 ) {
     val colors = LocalAppColors.current
 
@@ -129,7 +129,7 @@ fun FilterSection(
                                     fromDate = articleType.from,
                                     toDate = articleType.to,
                                     selectedSortBy = articleType.sortBy,
-                                    selectedDomains = articleType.domains,
+                                    selectedDomains = articleType.domains.toImmutableList(),
                                     onFromDateChanged = onFromDateChanged,
                                     onToDateChanged = onToDateChanged,
                                     onSortByChanged = onSortByChanged,
@@ -178,7 +178,7 @@ private fun EverythingFilters(
     onFromDateChanged: (LocalDate?) -> Unit,
     onToDateChanged: (LocalDate?) -> Unit,
     onSortByChanged: (ArticleSortBy?) -> Unit,
-    onDomainsChanged: (ImmutableList<String>) -> Unit,
+    onDomainsChanged: (List<String>) -> Unit,
 ) {
     val colors = LocalAppColors.current
 
@@ -250,7 +250,7 @@ private fun EverythingFilters(
                                     // Don't allow removing if it's the last domain
                                     selectedDomains.contains(domain) -> selectedDomains
                                     else -> selectedDomains + domain
-                                }.toImmutableList()
+                                }
                             )
                         },
                         label = domain,

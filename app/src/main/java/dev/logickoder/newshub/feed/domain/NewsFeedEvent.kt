@@ -3,7 +3,6 @@ package dev.logickoder.newshub.feed.domain
 import dev.logickoder.newshub.app.domain.model.ArticleCategory
 import dev.logickoder.newshub.app.domain.model.ArticleSortBy
 import dev.logickoder.newshub.app.domain.model.ArticleType
-import kotlinx.collections.immutable.ImmutableList
 import java.time.LocalDate
 
 sealed interface NewsFeedEvent {
@@ -14,7 +13,7 @@ sealed interface NewsFeedEvent {
     data class FromDateChanged(val date: LocalDate?) : NewsFeedEvent
     data class ToDateChanged(val date: LocalDate?) : NewsFeedEvent
     data class SortByChanged(val sortBy: ArticleSortBy?) : NewsFeedEvent
-    data class DomainsChanged(val domains: ImmutableList<String>) : NewsFeedEvent
+    data class DomainsChanged(val domains: List<String>) : NewsFeedEvent
     data object ToggleFilters : NewsFeedEvent
     data object Refresh : NewsFeedEvent
     data object LoadArticles : NewsFeedEvent

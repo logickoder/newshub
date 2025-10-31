@@ -17,7 +17,8 @@ object NewsDetailActions {
 
         intent.launchUrl(context, url.toUri())
         null
-    } catch (_: Exception) {
+    } catch (e: Exception) {
+        Napier.e("Cannot open URL in Custom Tab: $url", e)
         try {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,

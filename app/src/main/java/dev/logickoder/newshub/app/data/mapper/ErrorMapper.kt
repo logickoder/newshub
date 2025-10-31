@@ -15,6 +15,6 @@ object ErrorMapper {
             is IOException -> "Please check your internet connection and try again."
 
             else -> null
-        } ?: throwable.localizedMessage.orEmpty()
+        }.takeIf { !it.isNullOrBlank() } ?: throwable.localizedMessage.orEmpty()
     }
 }

@@ -3,6 +3,26 @@
 A modern Android news application built with Jetpack Compose that fetches and displays articles from
 NewsAPI.org.
 
+## 📥 Download APK
+
+**The latest APK can be downloaded from
+the [GitHub Actions tab](https://github.com/logickoder/newshub/actions):**
+
+1. Navigate to the **Actions** tab in this repository
+2. Click on the latest successful workflow run
+3. Scroll down to **Artifacts**
+4. Download the `newshub-apk` file
+
+> **Note:** You may need to be logged into GitHub to download artifacts. Alternatively, check
+> the [Releases](https://github.com/logickoder/newshub/releases) section for stable builds.
+
+## 📊 Test Coverage
+
+![Coverage](https://img.shields.io/badge/Coverage-75%25-brightgreen)
+
+Detailed coverage reports are generated with each build and available in
+the [Actions artifacts](https://github.com/logickoder/newshub/actions).
+
 ## Features
 
 - Browse news articles in List or Grid view
@@ -10,10 +30,13 @@ NewsAPI.org.
 - Pull-to-refresh functionality
 - Proper error handling and loading states
 - Material 3 design
+- Search functionality with debouncing
+- Filter by category and article type
+- Dark mode support
 
 ## Architecture
 
-- **Pattern:** MVVM + Clean Architecture
+- **Pattern:** MVVM + Clean Architecture (Vertical Slice)
 - **UI:** Jetpack Compose
 - **DI:** Hilt
 - **Networking:** Retrofit + OkHttp
@@ -24,9 +47,9 @@ NewsAPI.org.
 
 ```
 app/
-├── data/          # Data layer (API, DTOs, Repository)
-├── domain/        # Business logic (Models, Use Cases)
-└── presentation/  # UI layer (Screens, ViewModels)
+├── app/           # Application setup, DI modules
+├── feed/          # News feed feature (presentation, domain, data)
+├── details/       # Article details feature
 ```
 
 ## Setup Instructions
@@ -42,14 +65,14 @@ app/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/newshub.git
+git clone https://github.com/logickoder/newshub.git
 ```
 
 2. Get NewsAPI Key
     - Visit https://newsapi.org/
     - Register for a free API key
     - Add to `local.properties`:
-   ```
+   ```properties
    NEWS_API_KEY=your_api_key_here
    ```
 
@@ -65,23 +88,39 @@ Run unit tests:
 ./gradlew test
 ```
 
-Test coverage: 75%
+Run tests with coverage report:
+
+```bash
+./gradlew testDebugUnitTest jacocoTestReport
+```
+
+**Test coverage:** 75%+
+
+### Test Coverage
+
+- ✅ ViewModel layer (state management, business logic)
+- ✅ Repository layer (data fetching, error handling)
+- ✅ Mapper layer (DTO to domain model conversion)
+- ✅ Use case layer (business rules)
 
 ## API Reference
 
 - **Base URL:** https://newsapi.org/v2/
-- **Endpoint:** /top-headlines
-- **Parameters:** country=us, pageSize=20
+- **Endpoints:**
+    - `/top-headlines` - Fetch top news headlines
+    - `/everything` - Search all articles
+- **Parameters:** category, query, sortBy
 
 ## Dependencies
 
-- Jetpack Compose (UI)
-- Hilt (Dependency Injection)
-- Retrofit (Networking)
-- Coil (Image Loading)
-- Kotlinx Serialization (JSON)
-- Coroutines + Flow (Async)
-- JUnit, MockK (Testing)
+- **UI:** Jetpack Compose, Material 3
+- **DI:** Hilt
+- **Networking:** Retrofit, OkHttp
+- **Image Loading:** Coil
+- **Serialization:** Kotlinx Serialization
+- **Async:** Coroutines, Flow
+- **Testing:** JUnit, MockK, Turbine, Truth
+- **Logging:** Napier
 
 ## Design Decisions
 
@@ -90,40 +129,76 @@ Test coverage: 75%
 - Clear separation of concerns
 - Testable business logic
 - Scalable and maintainable
+- Easy to add new features without affecting existing code
+
+### Why Vertical Slice Architecture?
+
+- Features are self-contained (feed, details)
+- Reduces coupling between features
+- Makes the codebase easier to navigate
+- Aligns with modern Android development practices
 
 ### Why Jetpack Compose?
 
 - Modern declarative UI
 - Required by the role
 - Less boilerplate than XML
+- Better performance and developer experience
 
 ### Why Hilt over Koin?
 
 - Better compile-time safety
 - Official Android recommendation
 - Better IDE support
+- Generates less runtime overhead
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration:
+
+- ✅ Automated builds on push/pull request
+- ✅ Unit test execution
+- ✅ APK artifact generation
+- ✅ Code quality checks
 
 ## Future Improvements
 
 - Offline caching with Room
 - Pagination for infinite scroll
-- Search functionality
-- Category filtering
-- Bookmark articles
-- Share functionality
+- Bookmark/favorite articles
+- Share article functionality
+- Search history
+- Article categories with chips
+- Settings screen (theme, language, etc.)
 
 ## Screenshots
 
-[Add screenshots here]
+| Feed - Light Mode                                        | Feed - Dark Mode                                         |
+|----------------------------------------------------------|----------------------------------------------------------|
+| ![NewsHub Screenshot 1](./screenshots/screenshot-1.webp) | ![NewsHub Screenshot 2](./screenshots/screenshot-2.webp) |
+
+| Details - Light Mode                                     | Details - Dark Mode                                      |
+|----------------------------------------------------------|----------------------------------------------------------|
+| ![NewsHub Screenshot 3](./screenshots/screenshot-3.webp) | ![NewsHub Screenshot 4](./screenshots/screenshot-4.webp) |
 
 ## Author
 
-Jeffery Orazulike
+**Jeffery Orazulike**
 
 - GitHub: [@logickoder](https://github.com/logickoder)
 - LinkedIn: [Jeffery Orazulike](https://linkedin.com/in/logickoder)
 - Website: [logickoder.dev](https://logickoder.dev)
+- Email: jeffery@logickoder.dev
+
+## Acknowledgments
+
+- NewsAPI.org for providing the news data
+- Android community for excellent libraries and resources
 
 ## License
 
 This project is for assessment purposes.
+
+---
+
+**Built with ❤️ using Kotlin and Jetpack Compose**
